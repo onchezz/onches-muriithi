@@ -13,10 +13,15 @@ const ExperienceTimeline = () => {
         {portfolioData.experience.map((exp, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            className={`mb-12 relative grid grid-cols-[1fr,auto,1fr] items-center`}
+            initial={{ opacity: 0, rotateY: -90 }}
+            whileInView={{ opacity: 1, rotateY: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: index * 0.2,
+              type: "spring",
+              stiffness: 100
+            }}
+            className={`mb-12 relative grid grid-cols-[1fr,auto,1fr] items-center perspective-1000`}
           >
             {/* Content for left side */}
             <div className={`${index % 2 === 0 ? 'pr-8' : 'col-start-3 pl-8'}`}>
@@ -24,7 +29,7 @@ const ExperienceTimeline = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.2 }}
-                className="p-6 bg-[#1A1A1A] rounded-lg border border-[#FFB6A3] border-opacity-20 hover:border-opacity-40 transition-all"
+                className="p-6 bg-[#1A1A1A] rounded-lg border border-[#FFB6A3] border-opacity-20 hover:border-opacity-40 transition-all transform-gpu hover:scale-105"
               >
                 <h3 className="text-2xl font-bold text-[#FFB6A3] mb-2">{exp.role}</h3>
                 <div className="flex flex-wrap gap-4 text-gray-400 mb-4">
@@ -34,7 +39,7 @@ const ExperienceTimeline = () => {
                   </span>
                   <span className="flex items-center gap-2">
                     <MapPin className="w-4 h-4" />
-                    {exp.location}
+                    Remote
                   </span>
                   <span className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />

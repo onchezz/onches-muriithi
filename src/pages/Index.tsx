@@ -3,6 +3,8 @@ import { portfolioData } from "@/data/portfolio";
 import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import { Button } from "@/components/ui/button";
+import { HireModal } from "@/components/HireModal";
+import { generatePDF } from "@/utils/generatePDF";
 
 const Index = () => {
   return (
@@ -21,10 +23,12 @@ const Index = () => {
             </h1>
             <p className="text-xl text-gray-400 mb-8">{portfolioData.personal_info.tagline}</p>
             <div className="flex gap-4">
-              <Button className="bg-[#FFB6A3] hover:bg-[#FFB6A3]/90 text-black">
-                Hire Me
-              </Button>
-              <Button variant="outline" className="border-[#FFB6A3] text-[#FFB6A3] hover:bg-[#FFB6A3]/10">
+              <HireModal />
+              <Button 
+                variant="outline" 
+                className="border-[#FFB6A3] text-[#FFB6A3] hover:bg-[#FFB6A3]/10"
+                onClick={generatePDF}
+              >
                 Download CV
               </Button>
             </div>
@@ -45,7 +49,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section */}
       <section className="py-20 bg-[#1A1A1A]">
         <div className="container mx-auto px-4">
           <motion.div
@@ -79,7 +82,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16 text-[#FFB6A3]">Services I Offer</h2>
@@ -126,7 +128,7 @@ const Index = () => {
               </div>
               <div className="flex items-center gap-4 text-gray-400">
                 <MapPin className="w-6 h-6 text-[#FFB6A3]" />
-                <span>{portfolioData.personal_info.location}</span>
+                <span>Remote</span>
               </div>
             </motion.div>
 
@@ -136,22 +138,33 @@ const Index = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               className="space-y-6"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const data = Object.fromEntries(formData);
+                window.location.href = `mailto:${portfolioData.personal_info.contact.email}?subject=Contact from Portfolio&body=Name: ${data.name}%0D%0AEmail: ${data.email}%0D%0AMessage: ${data.message}`;
+              }}
             >
               <input
+                name="name"
                 type="text"
                 placeholder="Your Name"
                 className="w-full p-3 bg-[#121212] border border-[#FFB6A3]/20 rounded-lg focus:border-[#FFB6A3]/40 focus:outline-none"
+                required
               />
               <input
+                name="email"
                 type="email"
                 placeholder="Your Email"
                 className="w-full p-3 bg-[#121212] border border-[#FFB6A3]/20 rounded-lg focus:border-[#FFB6A3]/40 focus:outline-none"
+                required
               />
               <textarea
+                name="message"
                 placeholder="Your Message"
                 rows={4}
                 className="w-full p-3 bg-[#121212] border border-[#FFB6A3]/20 rounded-lg focus:border-[#FFB6A3]/40 focus:outline-none"
+                required
               />
               <Button className="w-full bg-[#FFB6A3] hover:bg-[#FFB6A3]/90 text-black">
                 Send Message
