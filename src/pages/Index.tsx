@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Octokit } from "@octokit/rest";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
+import { Github, ExternalLink, Code2, Boxes } from "lucide-react";
 
 const octokit = new Octokit();
 
@@ -11,20 +12,25 @@ const ProjectCard = ({ name, description, language, url }: {
   language: string | null;
   url: string;
 }) => (
-  <Card className="w-full hover:scale-105 transition-transform duration-300">
+  <Card className="group bg-[#222] border-[#333] hover:border-[#0FA0CE] transition-all duration-300">
     <CardHeader>
-      <CardTitle className="text-xl">{name}</CardTitle>
-      <CardDescription>{language}</CardDescription>
+      <CardTitle className="text-xl text-[#eee] flex items-center gap-2">
+        <Code2 className="w-5 h-5 text-[#0FA0CE]" />
+        {name}
+      </CardTitle>
+      <CardDescription className="text-[#888]">{language}</CardDescription>
     </CardHeader>
     <CardContent>
-      <p className="text-muted-foreground">{description || "No description available"}</p>
+      <p className="text-[#999] mb-4">{description || "No description available"}</p>
       <a 
         href={url} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="text-primary hover:underline mt-2 inline-block"
+        className="inline-flex items-center gap-2 text-[#0FA0CE] hover:text-[#33C3F0] transition-colors"
       >
-        View Project →
+        <Github className="w-4 h-4" />
+        View Project
+        <ExternalLink className="w-4 h-4" />
       </a>
     </CardContent>
   </Card>
@@ -56,28 +62,43 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen bg-[#000000e6] text-white">
       {/* Hero Section */}
-      <div className="h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
+      <div className="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI5MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBjeD0iMjIyIiBjeT0iMjIyIiByPSIyMjIiLz48Y2lyY2xlIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBjeD0iNjY2IiBjeT0iNjY2IiByPSIyMjIiLz48Y2lyY2xlIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBjeD0iMTExMCIgY3k9IjExMTAiIHI9IjIyMiIvPjwvZz48L3N2Zz4=')] opacity-10" />
+        <div className="text-center relative z-10 max-w-4xl mx-auto">
+          <h1 className="text-7xl sm:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#0FA0CE] to-[#33C3F0] tracking-tight">
             Onchez
           </h1>
-          <p className="text-xl text-gray-300">
+          <p className="text-xl sm:text-2xl text-[#888] mb-8 leading-relaxed">
             Blockchain Developer & Crypto Enthusiast
           </p>
+          <div className="flex gap-4 justify-center">
+            <a href="#projects" className="px-8 py-3 bg-[#0FA0CE] hover:bg-[#33C3F0] transition-colors rounded-md font-medium">
+              View Projects
+            </a>
+            <a href="https://github.com/onchezz" target="_blank" rel="noopener noreferrer" 
+               className="px-8 py-3 border border-[#333] hover:border-[#0FA0CE] transition-colors rounded-md font-medium inline-flex items-center gap-2">
+              <Github className="w-5 h-5" />
+              GitHub
+            </a>
+          </div>
         </div>
       </div>
 
       {/* Projects Section */}
-      <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center">
-          Featured Projects
-        </h2>
+      <section id="projects" className="py-20 px-4 md:px-8 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4 inline-flex items-center gap-3">
+            <Boxes className="w-8 h-8 text-[#0FA0CE]" />
+            Featured Projects
+          </h2>
+          <div className="w-20 h-1 bg-[#0FA0CE] mx-auto" />
+        </div>
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
-              <Card key={i} className="w-full h-48 animate-pulse bg-gray-800" />
+              <Card key={i} className="w-full h-48 animate-pulse bg-[#222] border-[#333]" />
             ))}
           </div>
         ) : (
@@ -96,34 +117,36 @@ const Index = () => {
       </section>
 
       {/* Crypto Section */}
-      <section className="py-20 px-4 md:px-8 bg-black bg-opacity-50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center">
-            Crypto Expertise
-          </h2>
+      <section className="py-20 px-4 md:px-8 bg-[#111] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI5MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIHN0cm9rZT0iIzIyMiIgc3Ryb2tlLXdpZHRoPSIyIiBjeD0iMjIyIiBjeT0iMjIyIiByPSIyMjIiLz48Y2lyY2xlIHN0cm9rZT0iIzIyMiIgc3Ryb2tlLXdpZHRoPSIyIiBjeD0iNjY2IiBjeT0iNjY2IiByPSIyMjIiLz48Y2lyY2xlIHN0cm9rZT0iIzIyMiIgc3Ryb2tlLXdpZHRoPSIyIiBjeD0iMTExMCIgY3k9IjExMTAiIHI9IjIyMiIvPjwvZz48L3N2Zz4=')] opacity-5" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Crypto Expertise</h2>
+            <div className="w-20 h-1 bg-[#0FA0CE] mx-auto" />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-gradient-to-br from-yellow-400 to-yellow-600">
+            <Card className="bg-[#222] border-[#333] hover:border-[#0FA0CE] transition-all duration-300">
               <CardHeader>
-                <CardTitle>Smart Contracts</CardTitle>
+                <CardTitle className="text-xl text-[#eee]">Smart Contracts</CardTitle>
               </CardHeader>
               <CardContent>
-                <p>Development and auditing of secure smart contracts on multiple chains</p>
+                <p className="text-[#999]">Development and auditing of secure smart contracts on multiple chains</p>
               </CardContent>
             </Card>
-            <Card className="bg-gradient-to-br from-blue-400 to-blue-600">
+            <Card className="bg-[#222] border-[#333] hover:border-[#0FA0CE] transition-all duration-300">
               <CardHeader>
-                <CardTitle>DeFi Protocols</CardTitle>
+                <CardTitle className="text-xl text-[#eee]">DeFi Protocols</CardTitle>
               </CardHeader>
               <CardContent>
-                <p>Building and integrating decentralized finance solutions</p>
+                <p className="text-[#999]">Building and integrating decentralized finance solutions</p>
               </CardContent>
             </Card>
-            <Card className="bg-gradient-to-br from-purple-400 to-purple-600">
+            <Card className="bg-[#222] border-[#333] hover:border-[#0FA0CE] transition-all duration-300">
               <CardHeader>
-                <CardTitle>Web3 Integration</CardTitle>
+                <CardTitle className="text-xl text-[#eee]">Web3 Integration</CardTitle>
               </CardHeader>
               <CardContent>
-                <p>Seamless integration of blockchain functionality into web applications</p>
+                <p className="text-[#999]">Seamless integration of blockchain functionality into web applications</p>
               </CardContent>
             </Card>
           </div>
