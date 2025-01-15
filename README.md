@@ -3,7 +3,8 @@
 ## Project info
 
 **URL**: https://lovable.dev/projects/4989541d-982f-425f-b482-184999fb4cf6
-**Deployed URL**: https://onches-murithi.vercel.app/
+**Deployed URL**: https://onches-muriithi-fomf3j2ap-onchezs-projects.vercel.app
+**Contact Form**: https://formspree.io/f/your-form-id
 
 ## How can I edit this code?
 
@@ -65,7 +66,7 @@ This project is built with:
 
 ## How can I deploy this project?
 
-The project is automatically deployed to Vercel when changes are pushed to the main branch. You can view the live site at: https://onches-murithi.vercel.app/
+The project is automatically deployed to Vercel when changes are pushed to the main branch. You can view the live site at: https://onches-muriithi-fomf3j2ap-onchezs-projects.vercel.app
 
 Simply open [Lovable](https://lovable.dev/projects/4989541d-982f-425f-b482-184999fb4cf6) and click on Share -> Publish to trigger a new deployment.
 

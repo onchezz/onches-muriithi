@@ -6,13 +6,35 @@ import { Textarea } from "./ui/textarea";
 import { toast } from "./ui/use-toast";
 
 const ContactSection = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    window.location.href = "mailto:brianonchezz@gmail.com";
-    toast({
-      title: "Thanks for reaching out!",
-      description: "Redirecting you to your email client...",
-    });
+    const formData = new FormData(e.currentTarget);
+    
+    try {
+      const response = await fetch("https://formspree.io/f/your-form-id", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "I'll get back to you soon.",
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      toast({
+        title: "Error sending message",
+        description: "Please try again later or contact me directly via email.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -80,6 +102,7 @@ const ContactSection = () => {
           >
             <div>
               <Input
+                name="name"
                 placeholder="Your Name"
                 className="bg-blue-950/20 border-blue-500/20 text-white"
                 required
@@ -87,6 +110,7 @@ const ContactSection = () => {
             </div>
             <div>
               <Input
+                name="email"
                 type="email"
                 placeholder="Your Email"
                 className="bg-blue-950/20 border-blue-500/20 text-white"
@@ -95,6 +119,7 @@ const ContactSection = () => {
             </div>
             <div>
               <Textarea
+                name="message"
                 placeholder="Your Message"
                 className="bg-blue-950/20 border-blue-500/20 text-white min-h-[150px]"
                 required
