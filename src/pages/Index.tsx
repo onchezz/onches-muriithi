@@ -1,177 +1,165 @@
-import { useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import ContactSection from "@/components/ContactSection";
-import { useQuery } from "@tanstack/react-query";
-import { Octokit } from "@octokit/rest";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Smartphone, Code2 } from "lucide-react";
-
-const octokit = new Octokit();
+import { motion } from "framer-motion";
+import { portfolioData } from "@/data/portfolio";
+import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import ExperienceTimeline from "@/components/ExperienceTimeline";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
-  const controls = useAnimation();
-
-  useEffect(() => {
-    controls.start({ opacity: 1, y: 0 });
-  }, [controls]);
-
-  const { data: projects, isLoading } = useQuery({
-    queryKey: ["github-projects"],
-    queryFn: async () => {
-      const response = await octokit.repos.listForUser({
-        username: "onchezz",
-        sort: "updated",
-        per_page: 6
-      });
-      console.log("Fetched GitHub projects:", response.data);
-      return response.data;
-    }
-  });
-
-  // Mobile app projects to showcase
-  const mobileProjects = [
-    {
-      id: "mobile-1",
-      name: "React Native Crypto Wallet",
-      description: "A secure mobile cryptocurrency wallet built with React Native, supporting multiple chains and tokens.",
-      tags: ["React Native", "Mobile", "Crypto", "Web3"],
-      demoUrl: "#",
-      repoUrl: "https://github.com/onchezz/mobile-crypto-wallet",
-      icon: Smartphone
-    },
-    {
-      id: "mobile-2",
-      name: "Flutter DeFi Dashboard",
-      description: "Cross-platform mobile DeFi dashboard for tracking investments and managing crypto assets.",
-      tags: ["Flutter", "Mobile", "DeFi", "Blockchain"],
-      demoUrl: "#",
-      repoUrl: "https://github.com/onchezz/flutter-defi-dashboard",
-      icon: Smartphone
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-black text-white">
-      <HeroSection />
-      <AboutSection />
-      
-      {/* Projects Section */}
-      <section id="projects" className="py-20 bg-gradient-to-b from-black to-indigo-950">
+    <div className="min-h-screen bg-[#121212] text-white">
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center relative overflow-hidden">
+        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-5xl md:text-7xl font-bold mb-4">
+              Hello, I'm
+              <span className="block text-[#FFB6A3]">{portfolioData.personal_info.name}</span>
+            </h1>
+            <p className="text-xl text-gray-400 mb-8">{portfolioData.personal_info.tagline}</p>
+            <div className="flex gap-4">
+              <Button className="bg-[#FFB6A3] hover:bg-[#FFB6A3]/90 text-black">
+                Hire Me
+              </Button>
+              <Button variant="outline" className="border-[#FFB6A3] text-[#FFB6A3] hover:bg-[#FFB6A3]/10">
+                Download CV
+              </Button>
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            <img
+              src="/lovable-uploads/98f1f0d0-f4bb-4fd0-a28b-ad4464f5c6e7.png"
+              alt="Hero"
+              className="w-full max-w-md mx-auto rounded-full border-4 border-[#FFB6A3]/20"
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-20 bg-[#1A1A1A]">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-            <div className="w-20 h-1 bg-blue-500 mx-auto mb-8"></div>
-          </motion.div>
-
-          {/* Mobile Projects */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-              <Smartphone className="w-6 h-6" />
-              Mobile Development
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              {mobileProjects.map((project) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="bg-[#1A1F2C] p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 transition-all group">
-                    <div className="flex flex-col items-center text-center">
-                      <div className="p-3 bg-blue-500/20 rounded-lg mb-4 group-hover:bg-blue-500/30 transition-colors">
-                        <project.icon className="w-8 h-8 text-blue-400" />
-                      </div>
-                      <h3 className="text-xl font-semibold mb-2 text-white">{project.name}</h3>
-                      <p className="text-gray-400 mb-4">{project.description}</p>
-                      <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                        {project.tags.map((tag) => (
-                          <Badge key={tag} variant="secondary" className="bg-blue-500/20 text-blue-200">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                      <div className="flex justify-center gap-4 mt-auto">
-                        <a
-                          href={project.repoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
-                        >
-                          <Github className="w-4 h-4" />
-                          View Code
-                        </a>
-                        <a
-                          href={project.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          Live Demo
-                        </a>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
+            <h2 className="text-4xl font-bold mb-8 text-[#FFB6A3]">About Me</h2>
+            <p className="text-lg text-gray-400 mb-8">{portfolioData.summary}</p>
+            <div className="flex justify-center gap-6">
+              <a
+                href={portfolioData.personal_info.contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#FFB6A3] hover:text-[#FFB6A3]/80 transition-colors"
+              >
+                <Github className="w-6 h-6" />
+              </a>
+              <a
+                href={portfolioData.personal_info.contact.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#FFB6A3] hover:text-[#FFB6A3]/80 transition-colors"
+              >
+                <Linkedin className="w-6 h-6" />
+              </a>
             </div>
-          </div>
+          </motion.div>
+        </div>
+      </section>
 
-          {/* Web Projects */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {isLoading ? (
-              Array(6).fill(0).map((_, i) => (
-                <Card key={i} className="h-48 animate-pulse bg-[#1A1F2C]" />
-              ))
-            ) : (
-              projects?.map((project) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="bg-[#1A1F2C] p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 transition-all group">
-                    <div className="flex flex-col items-center text-center">
-                      <div className="p-3 bg-blue-500/20 rounded-lg mb-4 group-hover:bg-blue-500/30 transition-colors">
-                        <Code2 className="w-8 h-8 text-blue-400" />
-                      </div>
-                      <h3 className="text-xl font-semibold mb-2 text-white">{project.name}</h3>
-                      <p className="text-gray-400 mb-4">{project.description || "No description available"}</p>
-                      <div className="flex justify-center items-center gap-4 mt-auto">
-                        <span className="text-blue-400">{project.language}</span>
-                        <a
-                          href={project.html_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
-                        >
-                          <Github className="w-4 h-4" />
-                          View Project
-                        </a>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))
-            )}
+      {/* Services Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16 text-[#FFB6A3]">Services I Offer</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {portfolioData.services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="p-6 bg-[#1A1A1A] rounded-lg border border-[#FFB6A3] border-opacity-20 hover:border-opacity-40 transition-all"
+              >
+                <h3 className="text-xl font-bold mb-4 text-[#FFB6A3]">{service.title}</h3>
+                <p className="text-gray-400">{service.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      <ContactSection />
+      {/* Experience Timeline */}
+      <ExperienceTimeline />
+
+      {/* Contact Section */}
+      <section className="py-20 bg-[#1A1A1A]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16 text-[#FFB6A3]">Get In Touch</h2>
+          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <div className="flex items-center gap-4 text-gray-400">
+                <Mail className="w-6 h-6 text-[#FFB6A3]" />
+                <span>{portfolioData.personal_info.contact.email}</span>
+              </div>
+              <div className="flex items-center gap-4 text-gray-400">
+                <Phone className="w-6 h-6 text-[#FFB6A3]" />
+                <span>{portfolioData.personal_info.contact.phone}</span>
+              </div>
+              <div className="flex items-center gap-4 text-gray-400">
+                <MapPin className="w-6 h-6 text-[#FFB6A3]" />
+                <span>{portfolioData.personal_info.location}</span>
+              </div>
+            </motion.div>
+
+            <motion.form
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full p-3 bg-[#121212] border border-[#FFB6A3]/20 rounded-lg focus:border-[#FFB6A3]/40 focus:outline-none"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full p-3 bg-[#121212] border border-[#FFB6A3]/20 rounded-lg focus:border-[#FFB6A3]/40 focus:outline-none"
+              />
+              <textarea
+                placeholder="Your Message"
+                rows={4}
+                className="w-full p-3 bg-[#121212] border border-[#FFB6A3]/20 rounded-lg focus:border-[#FFB6A3]/40 focus:outline-none"
+              />
+              <Button className="w-full bg-[#FFB6A3] hover:bg-[#FFB6A3]/90 text-black">
+                Send Message
+              </Button>
+            </motion.form>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
