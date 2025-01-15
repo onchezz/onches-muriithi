@@ -5,12 +5,15 @@ import ExperienceTimeline from "@/components/ExperienceTimeline";
 import { Button } from "@/components/ui/button";
 import { HireModal } from "@/components/HireModal";
 import { generatePDF } from "@/utils/generatePDF";
+import Navigation from "@/components/Navigation";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-[#121212] text-white">
+      <Navigation />
+      
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center relative overflow-hidden">
+      <section id="hero" className="min-h-screen flex items-center relative overflow-hidden pt-20">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -49,7 +52,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-[#1A1A1A]">
+      {/* About Section */}
+      <section id="about" className="py-20 bg-[#1A1A1A]">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -82,32 +86,13 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16 text-[#FFB6A3]">Services I Offer</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {portfolioData.services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="p-6 bg-[#1A1A1A] rounded-lg border border-[#FFB6A3] border-opacity-20 hover:border-opacity-40 transition-all"
-              >
-                <h3 className="text-xl font-bold mb-4 text-[#FFB6A3]">{service.title}</h3>
-                <p className="text-gray-400">{service.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      {/* Experience Timeline */}
+      <section id="experience">
+        <ExperienceTimeline />
       </section>
 
-      {/* Experience Timeline */}
-      <ExperienceTimeline />
-
       {/* Contact Section */}
-      <section className="py-20 bg-[#1A1A1A]">
+      <section id="contact" className="py-20 bg-[#1A1A1A]">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16 text-[#FFB6A3]">Get In Touch</h2>
           <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
