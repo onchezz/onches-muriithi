@@ -4,16 +4,19 @@ import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import { Button } from "@/components/ui/button";
 import { HireModal } from "@/components/HireModal";
-import { generatePDF } from "@/utils/generatePDF";
+// import { generatePDF } from "@/utils/generatePDF";
 import Navigation from "@/components/Navigation";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-[#121212] text-white">
       <Navigation />
-      
+
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center relative overflow-hidden pt-20">
+      <section
+        id="hero"
+        className="min-h-screen flex items-center relative overflow-hidden pt-20"
+      >
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -22,21 +25,25 @@ const Index = () => {
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-4">
               Hello, I'm
-              <span className="block text-[#FFB6A3]">{portfolioData.personal_info.name}</span>
+              <span className="block text-[#FFB6A3]">
+                {portfolioData.personal_info.name}
+              </span>
             </h1>
-            <p className="text-xl text-gray-400 mb-8">{portfolioData.personal_info.tagline}</p>
+            <p className="text-xl text-gray-400 mb-8">
+              {portfolioData.personal_info.tagline}
+            </p>
             <div className="flex gap-4">
               <HireModal />
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="border-[#FFB6A3] text-[#FFB6A3] hover:bg-[#FFB6A3]/10"
-                onClick={generatePDF}
+                // onClick={generatePDF}
               >
                 Download CV
               </Button>
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -63,7 +70,9 @@ const Index = () => {
             className="max-w-3xl mx-auto text-center"
           >
             <h2 className="text-4xl font-bold mb-8 text-[#FFB6A3]">About Me</h2>
-            <p className="text-lg text-gray-400 mb-8">{portfolioData.summary}</p>
+            <p className="text-lg text-gray-400 mb-8">
+              {portfolioData.summary}
+            </p>
             <div className="flex justify-center gap-6">
               <a
                 href={portfolioData.personal_info.contact.github}
@@ -94,7 +103,9 @@ const Index = () => {
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-[#1A1A1A]">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16 text-[#FFB6A3]">Get In Touch</h2>
+          <h2 className="text-4xl font-bold text-center mb-16 text-[#FFB6A3]">
+            Get In Touch
+          </h2>
           <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
