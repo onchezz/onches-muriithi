@@ -11,7 +11,7 @@ const HeroSection = () => {
       className="min-h-screen relative overflow-hidden bg-gradient-to-br from-indigo-950 via-blue-900 to-teal-900"
     >
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/98f1f0d0-f4bb-4fd0-a28b-ad4464f5c6e7.png')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
       </div>
       
@@ -22,6 +22,13 @@ const HeroSection = () => {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="max-w-4xl"
         >
+          <div className="mb-8 w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-blue-500/50">
+            <img 
+              src="/lovable-uploads/98f1f0d0-f4bb-4fd0-a28b-ad4464f5c6e7.png" 
+              alt="Onches Muriithi" 
+              className="w-full h-full object-cover"
+            />
+          </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400">
             Onches Muriithi
           </h1>

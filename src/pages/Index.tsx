@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Octokit } from "@octokit/rest";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Smartphone } from "lucide-react";
+import { ExternalLink, Github, Smartphone, Code2 } from "lucide-react";
 
 const octokit = new Octokit();
 
@@ -39,7 +39,8 @@ const Index = () => {
       description: "A secure mobile cryptocurrency wallet built with React Native, supporting multiple chains and tokens.",
       tags: ["React Native", "Mobile", "Crypto", "Web3"],
       demoUrl: "#",
-      repoUrl: "https://github.com/onchezz/mobile-crypto-wallet"
+      repoUrl: "https://github.com/onchezz/mobile-crypto-wallet",
+      icon: Smartphone
     },
     {
       id: "mobile-2",
@@ -47,7 +48,8 @@ const Index = () => {
       description: "Cross-platform mobile DeFi dashboard for tracking investments and managing crypto assets.",
       tags: ["Flutter", "Mobile", "DeFi", "Blockchain"],
       demoUrl: "#",
-      repoUrl: "https://github.com/onchezz/flutter-defi-dashboard"
+      repoUrl: "https://github.com/onchezz/flutter-defi-dashboard",
+      icon: Smartphone
     }
   ];
 
@@ -57,7 +59,7 @@ const Index = () => {
       <AboutSection />
       
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-black">
+      <section id="projects" className="py-20 bg-gradient-to-b from-black to-indigo-950">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -85,35 +87,40 @@ const Index = () => {
                   transition={{ duration: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 border-purple-500/20 hover:border-purple-500/40 transition-all p-6 h-full">
-                    <h3 className="text-xl font-semibold mb-2 text-white">{project.name}</h3>
-                    <p className="text-gray-400 mb-4">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary" className="bg-purple-500/20 text-purple-200">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
-                      >
-                        <Github className="w-4 h-4" />
-                        View Code
-                      </a>
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Live Demo
-                      </a>
+                  <Card className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 transition-all group">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="p-3 bg-blue-500/20 rounded-lg mb-4 group-hover:bg-blue-500/30 transition-colors">
+                        <project.icon className="w-8 h-8 text-blue-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 text-white">{project.name}</h3>
+                      <p className="text-gray-400 mb-4">{project.description}</p>
+                      <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                        {project.tags.map((tag) => (
+                          <Badge key={tag} variant="secondary" className="bg-blue-500/20 text-blue-200">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                      <div className="flex justify-center gap-4 mt-auto">
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                          <Github className="w-4 h-4" />
+                          View Code
+                        </a>
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Live Demo
+                        </a>
+                      </div>
                     </div>
                   </Card>
                 </motion.div>
@@ -136,19 +143,25 @@ const Index = () => {
                   transition={{ duration: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 border-blue-500/20 hover:border-blue-500/40 transition-all p-6 h-full">
-                    <h3 className="text-xl font-semibold mb-2 text-white">{project.name}</h3>
-                    <p className="text-gray-400 mb-4">{project.description || "No description available"}</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-blue-400">{project.language}</span>
-                      <a
-                        href={project.html_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300 transition-colors"
-                      >
-                        View Project →
-                      </a>
+                  <Card className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 transition-all group">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="p-3 bg-blue-500/20 rounded-lg mb-4 group-hover:bg-blue-500/30 transition-colors">
+                        <Code2 className="w-8 h-8 text-blue-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 text-white">{project.name}</h3>
+                      <p className="text-gray-400 mb-4">{project.description || "No description available"}</p>
+                      <div className="flex justify-center items-center gap-4 mt-auto">
+                        <span className="text-blue-400">{project.language}</span>
+                        <a
+                          href={project.html_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                          <Github className="w-4 h-4" />
+                          View Project
+                        </a>
+                      </div>
                     </div>
                   </Card>
                 </motion.div>
