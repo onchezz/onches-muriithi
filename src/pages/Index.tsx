@@ -87,7 +87,7 @@ const Index = () => {
                   transition={{ duration: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 transition-all group">
+                  <Card className="bg-[#1A1F2C] p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 transition-all group">
                     <div className="flex flex-col items-center text-center">
                       <div className="p-3 bg-blue-500/20 rounded-lg mb-4 group-hover:bg-blue-500/30 transition-colors">
                         <project.icon className="w-8 h-8 text-blue-400" />
@@ -132,7 +132,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {isLoading ? (
               Array(6).fill(0).map((_, i) => (
-                <Card key={i} className="h-48 animate-pulse bg-blue-900/20" />
+                <Card key={i} className="h-48 animate-pulse bg-[#1A1F2C]" />
               ))
             ) : (
               projects?.map((project) => (
@@ -143,7 +143,7 @@ const Index = () => {
                   transition={{ duration: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 transition-all group">
+                  <Card className="bg-[#1A1F2C] p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 transition-all group">
                     <div className="flex flex-col items-center text-center">
                       <div className="p-3 bg-blue-500/20 rounded-lg mb-4 group-hover:bg-blue-500/30 transition-colors">
                         <Code2 className="w-8 h-8 text-blue-400" />
