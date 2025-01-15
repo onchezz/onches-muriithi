@@ -1,17 +1,60 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, useTexture } from "@react-three/drei";
+import { Suspense } from "react";
+import Avatar3D from "./Avatar3D";
+
+const Scene = () => {
+  return (
+    <>
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} />
+      <Suspense fallback={null}>
+        <Avatar3D className="rounded-full overflow-hidden" />
+        <OrbitControls enableZoom={false} />
+      </Suspense>
+    </>
+  );
+};
 
 const HeroSection = () => {
+  const letters = "Onches Muriithi".split("");
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        repeat: Infinity,
+        repeatDelay: 2
+      }
+    }
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.43, 0.13, 0.23, 0.96]
+      }
+    }
+  };
+
   return (
     <motion.section 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="min-h-screen relative overflow-hidden bg-gradient-to-br from-indigo-950 via-blue-900 to-teal-900"
+      className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-900 to-blue-700"
     >
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/98f1f0d0-f4bb-4fd0-a28b-ad4464f5c6e7.png')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/ffdd34fd-b353-4089-b4c4-09d3f98cda45.png')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
       </div>
       
@@ -20,25 +63,36 @@ const HeroSection = () => {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="max-w-4xl"
+          className="max-w-4xl mx-auto text-center"
         >
-          <div className="mb-8 w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-blue-500/50">
-            <img 
-              src="/lovable-uploads/98f1f0d0-f4bb-4fd0-a28b-ad4464f5c6e7.png" 
-              alt="Onches Muriithi" 
-              className="w-full h-full object-cover"
-            />
+          <div className="mb-8 w-64 h-64 mx-auto rounded-full overflow-hidden">
+            <Avatar3D className="w-full h-full" />
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400">
-            Onches Muriithi
-          </h1>
+          
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="mb-6"
+          >
+            {letters.map((letter, index) => (
+              <motion.span
+                key={index}
+                variants={letterVariants}
+                className="inline-block text-5xl md:text-7xl font-bold text-white"
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </motion.span>
+            ))}
+          </motion.div>
+
           <p className="text-2xl md:text-3xl text-gray-300 mb-8 font-light">
             Crafting Scalable Blockchain Solutions for a Decentralized Future
           </p>
-          <p className="text-lg text-gray-400 mb-12 max-w-2xl">
+          <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
             Web3 Smart Contract Developer | Blockchain Specialist | Customer Support Expert
           </p>
-          <div className="flex gap-6">
+          <div className="flex gap-6 justify-center">
             <Button 
               size="lg"
               className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-6 text-lg group"

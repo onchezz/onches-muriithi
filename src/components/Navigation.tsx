@@ -10,9 +10,9 @@ const Navigation = () => {
 
   const navItems = [
     { label: "Home", to: "hero" },
-    { label: "About", to: "about" },
+    // { label: "About", to: "about" },
     { label: "Experience", to: "experience" },
-    { label: "Contact", to: "contact" }
+    { label: "Contact", to: "contact" },
   ];
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -44,7 +44,9 @@ const Navigation = () => {
                   {navItems.map((item) => (
                     <motion.li
                       key={item.to}
-                      whileHover={{ backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                      whileHover={{
+                        backgroundColor: "rgba(59, 130, 246, 0.1)",
+                      }}
                     >
                       <Link
                         to={item.to}
