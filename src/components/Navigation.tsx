@@ -25,10 +25,9 @@ const Navigation = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.3 }}
           onClick={toggleMenu}
-          className="flex items-center gap-2 bg-black/80 backdrop-blur-sm border border-blue-500/20 rounded-lg px-4 py-2 shadow-lg"
+          className="bg-black/80 backdrop-blur-sm border border-blue-500/20 rounded-lg p-2 shadow-lg"
         >
-          <span className="text-gray-300 text-sm">Menu</span>
-          <ChevronDown className="w-4 h-4 text-gray-300" />
+          <ChevronDown className="w-6 h-6 text-gray-300" />
         </motion.button>
 
         <AnimatePresence>
