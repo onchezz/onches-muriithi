@@ -1,43 +1,9 @@
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Text3D, Center } from "@react-three/drei";
 import { useQuery } from "@tanstack/react-query";
 import { Octokit } from "@octokit/rest";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 
 const octokit = new Octokit();
-
-const Scene = () => {
-  return (
-    <Canvas
-      camera={{ position: [0, 0, 5] }}
-      style={{ background: 'transparent' }}
-    >
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
-      <OrbitControls 
-        enableZoom={false}
-        enablePan={false}
-        minPolarAngle={Math.PI / 2}
-        maxPolarAngle={Math.PI / 2}
-      />
-      <Center>
-        <mesh>
-          <Text3D
-            font="/fonts/helvetiker_regular.typeface.json"
-            size={0.5}
-            height={0.2}
-            curveSegments={12}
-            bevelEnabled={false}
-          >
-            Onchez
-          </Text3D>
-          <meshStandardMaterial color="#88ff00" />
-        </mesh>
-      </Center>
-    </Canvas>
-  );
-};
 
 const ProjectCard = ({ name, description, language, url }: { 
   name: string;
@@ -92,19 +58,14 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       {/* Hero Section */}
-      <div className="h-screen relative">
-        <div className="absolute inset-0">
-          <Scene />
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="text-center">
-            <h1 className="text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
-              Onchez
-            </h1>
-            <p className="text-xl text-gray-300">
-              Blockchain Developer & Crypto Enthusiast
-            </p>
-          </div>
+      <div className="h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
+            Onchez
+          </h1>
+          <p className="text-xl text-gray-300">
+            Blockchain Developer & Crypto Enthusiast
+          </p>
         </div>
       </div>
 
