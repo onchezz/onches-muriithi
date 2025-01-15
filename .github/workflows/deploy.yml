@@ -36,12 +36,16 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Create .nojekyll file
+        run: touch ./dist/.nojekyll
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          exclude_assets: 'README.md'
 
       - name: Create Release
         uses: actions/create-release@v1
