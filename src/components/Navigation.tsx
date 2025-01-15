@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-scroll";
-import { Menu, ChevronDown } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -27,7 +27,7 @@ const Navigation = () => {
           onClick={toggleMenu}
           className="bg-black/80 backdrop-blur-sm border border-blue-500/20 rounded-lg p-2 shadow-lg"
         >
-          <ChevronDown className="w-6 h-6 text-gray-300" />
+          <Menu className="w-6 h-6 text-gray-300" />
         </motion.button>
 
         <AnimatePresence>
