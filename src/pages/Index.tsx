@@ -9,18 +9,27 @@ const octokit = new Octokit();
 
 const Scene = () => {
   return (
-    <Canvas camera={{ position: [0, 0, 5] }}>
+    <Canvas
+      camera={{ position: [0, 0, 5] }}
+      style={{ background: 'transparent' }}
+    >
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
-      <OrbitControls enableZoom={false} />
+      <OrbitControls 
+        enableZoom={false}
+        enablePan={false}
+        minPolarAngle={Math.PI / 2}
+        maxPolarAngle={Math.PI / 2}
+      />
       <Center>
         <Text3D
           font="/fonts/helvetiker_regular.typeface.json"
           size={0.5}
           height={0.2}
           curveSegments={12}
+          bevelEnabled={false}
         >
-          {`Onchez\nDeveloper`}
+          Onchez
           <meshStandardMaterial color="#88ff00" />
         </Text3D>
       </Center>
