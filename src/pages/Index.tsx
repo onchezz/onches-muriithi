@@ -22,16 +22,18 @@ const Scene = () => {
         maxPolarAngle={Math.PI / 2}
       />
       <Center>
-        <Text3D
-          font="/fonts/helvetiker_regular.typeface.json"
-          size={0.5}
-          height={0.2}
-          curveSegments={12}
-          bevelEnabled={false}
-        >
-          Onchez
+        <mesh>
+          <Text3D
+            font="/fonts/helvetiker_regular.typeface.json"
+            size={0.5}
+            height={0.2}
+            curveSegments={12}
+            bevelEnabled={false}
+          >
+            Onchez
+          </Text3D>
           <meshStandardMaterial color="#88ff00" />
-        </Text3D>
+        </mesh>
       </Center>
     </Canvas>
   );
