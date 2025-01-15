@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-scroll";
-import { Menu, X } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -19,44 +19,33 @@ const Navigation = () => {
 
   if (isMobile) {
     return (
-      <>
+      <div className="fixed top-4 right-4 z-50">
         <motion.button
-          initial={{ y: -100, opacity: 0 }}
+          initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.3 }}
           onClick={toggleMenu}
-          className="fixed top-4 right-4 z-50 bg-black/80 backdrop-blur-sm border border-blue-500/20 rounded-full p-2 shadow-lg"
+          className="flex items-center gap-2 bg-black/80 backdrop-blur-sm border border-blue-500/20 rounded-lg px-4 py-2 shadow-lg"
         >
-          <Menu className="w-6 h-6 text-gray-300" />
+          <span className="text-gray-300 text-sm">Menu</span>
+          <ChevronDown className="w-4 h-4 text-gray-300" />
         </motion.button>
 
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/90 backdrop-blur-sm z-40 flex items-center justify-center"
+              className="absolute top-full right-0 mt-2 bg-black/90 backdrop-blur-sm rounded-lg shadow-lg border border-blue-500/20 min-w-[160px] py-2"
             >
-              <button
-                onClick={toggleMenu}
-                className="absolute top-4 right-4 text-gray-300 p-2"
-              >
-                <X className="w-6 h-6" />
-              </button>
-              <motion.nav
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.95, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <ul className="flex flex-col items-center space-y-6">
+              <nav>
+                <ul className="flex flex-col">
                   {navItems.map((item) => (
                     <motion.li
                       key={item.to}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ backgroundColor: "rgba(59, 130, 246, 0.1)" }}
                     >
                       <Link
                         to={item.to}
@@ -64,7 +53,7 @@ const Navigation = () => {
                         smooth={true}
                         offset={-100}
                         duration={500}
-                        className="text-gray-300 hover:text-blue-400 transition-colors cursor-pointer text-xl font-medium"
+                        className="block px-4 py-2 text-gray-300 hover:text-blue-400 transition-colors cursor-pointer text-sm"
                         onClick={toggleMenu}
                       >
                         {item.label}
@@ -72,11 +61,11 @@ const Navigation = () => {
                     </motion.li>
                   ))}
                 </ul>
-              </motion.nav>
+              </nav>
             </motion.div>
           )}
         </AnimatePresence>
-      </>
+      </div>
     );
   }
 
