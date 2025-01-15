@@ -3,6 +3,7 @@
 ## Project info
 
 **URL**: https://lovable.dev/projects/4989541d-982f-425f-b482-184999fb4cf6
+**Deployed URL**: https://onches-murithi.vercel.app/
 
 ## How can I edit this code?
 
@@ -52,17 +53,21 @@ npm run dev
 
 ## What technologies are used for this project?
 
-This project is built with .
+This project is built with:
 
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
+- Framer Motion for animations
+- React Scroll for smooth navigation
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/4989541d-982f-425f-b482-184999fb4cf6) and click on Share -> Publish.
+The project is automatically deployed to Vercel when changes are pushed to the main branch. You can view the live site at: https://onches-murithi.vercel.app/
+
+Simply open [Lovable](https://lovable.dev/projects/4989541d-982f-425f-b482-184999fb4cf6) and click on Share -> Publish to trigger a new deployment.
 
 ## I want to use a custom domain - is that possible?
 
