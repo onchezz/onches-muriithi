@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import { Button } from "@/components/ui/button";
 import { HireModal } from "@/components/HireModal";
-// import { generatePDF } from "@/utils/generatePDF";
+import { generatePDF } from "@/utils/generatePDF";
 import Navigation from "@/components/Navigation";
 
 const Index = () => {
@@ -37,7 +37,7 @@ const Index = () => {
               <Button
                 variant="outline"
                 className="border-[#FFB6A3] text-[#FFB6A3] hover:bg-[#FFB6A3]/10"
-                // onClick={generatePDF}
+                onClick={generatePDF}
               >
                 Download CV
               </Button>
