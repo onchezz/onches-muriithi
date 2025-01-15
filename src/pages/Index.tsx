@@ -100,9 +100,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-[#000000e6] text-white">
-      {/* Hero Section */}
+      {/* Hero Section with Background Image */}
       <div className="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI5MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48Y2lyY2xlIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBjeD0iMjIyIiBjeT0iMjIyIiByPSIyMjIiLz48Y2lyY2xlIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBjeD0iNjY2IiBjeT0iNjY2IiByPSIyMjIiLz48Y2lyY2xlIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBjeD0iMTExMCIgY3k9IjExMTAiIHI9IjIyMiIvPjwvZz48L3N2Zz4=')] opacity-10" />
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7" 
+            alt="Code Background" 
+            className="w-full h-full object-cover opacity-20"
+          />
+        </div>
         <div className="text-center relative z-10 max-w-4xl mx-auto">
           <h1 className="text-7xl sm:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#0FA0CE] to-[#33C3F0] tracking-tight">
             Onchez
@@ -126,9 +132,16 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Skills Section */}
+      {/* Skills Section with Image */}
       <section className="py-20 px-4 md:px-8 bg-[#111] relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e" 
+            alt="Tech Background" 
+            className="w-full h-full object-cover opacity-10"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Technical Expertise</h2>
             <div className="w-20 h-1 bg-[#0FA0CE] mx-auto" />
@@ -171,9 +184,16 @@ const Index = () => {
         )}
       </section>
 
-      {/* Experience Section */}
-      <section className="py-20 px-4 md:px-8 bg-[#111]">
-        <div className="max-w-7xl mx-auto">
+      {/* Experience Section with Image */}
+      <section className="py-20 px-4 md:px-8 bg-[#111] relative">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" 
+            alt="Work Experience" 
+            className="w-full h-full object-cover opacity-10"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Work Experience</h2>
             <div className="w-20 h-1 bg-[#0FA0CE] mx-auto" />
@@ -192,26 +212,20 @@ const Index = () => {
                 </ul>
               </CardContent>
             </Card>
-            <Card className="bg-[#222] border-[#333]">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#eee]">Full Stack Developer</CardTitle>
-                <CardDescription className="text-[#0FA0CE]">Web3 Studio • 2019 - 2021</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside text-[#999] space-y-2">
-                  <li>Built and maintained multiple Web3 applications</li>
-                  <li>Developed user interfaces for blockchain applications</li>
-                  <li>Integrated various blockchain networks and protocols</li>
-                </ul>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 px-4 md:px-8 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
+            alt="Contact Background" 
+            className="w-full h-full object-cover opacity-10"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
             <div className="w-20 h-1 bg-[#0FA0CE] mx-auto mb-8" />
@@ -220,15 +234,27 @@ const Index = () => {
             </p>
           </div>
           <div className="flex justify-center gap-6">
-            <Button variant="outline" className="hover:border-[#0FA0CE] hover:text-[#0FA0CE]">
+            <Button 
+              variant="outline" 
+              className="hover:border-[#0FA0CE] hover:text-[#0FA0CE]"
+              onClick={() => window.location.href = "mailto:brianonchezz@gmail.com"}
+            >
               <Mail className="mr-2 h-4 w-4" />
               Email Me
             </Button>
-            <Button variant="outline" className="hover:border-[#0FA0CE] hover:text-[#0FA0CE]">
+            <Button 
+              variant="outline" 
+              className="hover:border-[#0FA0CE] hover:text-[#0FA0CE]"
+              onClick={() => window.open("https://www.linkedin.com/in/brian-onchezz-b3b1b3b3/", "_blank")}
+            >
               <Linkedin className="mr-2 h-4 w-4" />
               LinkedIn
             </Button>
-            <Button variant="outline" className="hover:border-[#0FA0CE] hover:text-[#0FA0CE]">
+            <Button 
+              variant="outline" 
+              className="hover:border-[#0FA0CE] hover:text-[#0FA0CE]"
+              onClick={() => window.open("https://twitter.com/onchezz", "_blank")}
+            >
               <Twitter className="mr-2 h-4 w-4" />
               Twitter
             </Button>
