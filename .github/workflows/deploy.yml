@@ -37,15 +37,17 @@ jobs:
         run: npm run build
 
       - name: Create .nojekyll file
-        run: touch ./dist/.nojekyll
+        run: |
+          touch ./dist/.nojekyll
 
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          exclude_assets: 'README.md'
+          folder: dist
+          branch: gh-pages
+          clean: true
+          clean-exclude: |
+            README.md
 
       - name: Create Release
         uses: actions/create-release@v1
