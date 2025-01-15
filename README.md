@@ -3,7 +3,7 @@
 ## Project info
 
 **URL**: https://lovable.dev/projects/4989541d-982f-425f-b482-184999fb4cf6
-**Deployed URL**: https://onches-muriithi-fomf3j2ap-onchezs-projects.vercel.app
+**Deployed URL**: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
 **Contact Form**: https://formspree.io/f/your-form-id
 
 ## How can I edit this code?
@@ -66,10 +66,11 @@ This project is built with:
 
 ## How can I deploy this project?
 
-The project is automatically deployed to Vercel when changes are pushed to the main branch. You can view the live site at: https://onches-muriithi-fomf3j2ap-onchezs-projects.vercel.app
+The project is automatically deployed to GitHub Pages when changes are pushed to the main branch. You can view the live site at: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
 
 Simply open [Lovable](https://lovable.dev/projects/4989541d-982f-425f-b482-184999fb4cf6) and click on Share -> Publish to trigger a new deployment.
 
 ## I want to use a custom domain - is that possible?
 
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+
