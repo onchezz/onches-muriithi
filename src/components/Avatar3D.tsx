@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Avatar3D = ({ className }: { className?: string }) => {
   return (
-    <div className={`w-80 h-80 rounded-full overflow-hidden  ${className}`}>
+    <div className={`aspect-square w-80 rounded-full overflow-hidden ${className}`}>
       <motion.img
         src="/lovable-uploads/ffdd34fd-b353-4089-b4c4-09d3f98cda45.png"
         alt="Avatar"
